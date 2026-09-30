@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Autorização · Vibe City Publisher</title>
+  <link rel="icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="icon-192.png" alt="Vibe City"><h1>Autorização recebida</h1>
+  </header>
+  <main>
+    <section>
+      <h2 id="status">Verificando…</h2>
+      <p>Copie o endereço completo desta página (barra do navegador) e cole no terminal onde o script
+        <strong>tiktok_auth.py</strong> está esperando.</p>
+      <p class="muted">Esta página não envia nada para lugar nenhum. O código abaixo expira em poucos minutos e só funciona
+        junto com a chave secreta do app, que nunca sai do seu computador.</p>
+      <div class="box" id="url"></div>
+    </section>
+  </main>
+  <script>
+    // Só exibe; nenhuma requisição é feita a partir desta página.
+    const params = new URLSearchParams(location.search);
+    document.getElementById("url").textContent = location.href;
+    document.getElementById("status").textContent = params.get("code")
+      ? "✅ Autorizado! Copie o endereço desta página."
+      : "⚠️ Nenhum código recebido. " + (params.get("error_description") || params.get("error") || "");
+  </script>
+</body>
+</html>
